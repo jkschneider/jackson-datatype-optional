@@ -6,10 +6,10 @@ Given the following type:
 
 ```java
 static class Person {
-        String firstName
-        Optional<String> middleName = Optional.empty()
-        Optional<List<String>> nicknames = Optional.empty()
-        Optional<Optional<String>> uhhh = Optional.empty()
+   String firstName
+   Optional<String> middleName = Optional.empty()
+   Optional<List<String>> nicknames = Optional.empty()
+   Optional<Optional<String>> uhhh = Optional.empty()
 }
 ```
 
