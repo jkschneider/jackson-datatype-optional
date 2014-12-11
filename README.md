@@ -17,3 +17,7 @@ static class Person {
  2. `new Person(nicknames: Optional.of(['j', 'johnny']))` serializes to `{"nicknames":["j","johnny"]}`
  3. `new Person(uhhh: Optional.of(Optional.of('foo')))` serializes to `{"uhhh":"foo"}`
  4.  `new Person(uhhh: Optional.of(Optional.empty()))` serializes to `{"uhhh":null}` (this could be improved to not serialize this field at all)
+
+## Building the code
+
+Running `gradlew build` will compile, run the tests, and build a jar.
