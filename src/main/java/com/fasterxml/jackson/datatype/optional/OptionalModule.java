@@ -3,7 +3,6 @@ package com.fasterxml.jackson.datatype.optional;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.Deserializers;
-import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 
@@ -24,14 +23,12 @@ public class OptionalModule extends Module {
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         return OptionalModule.class.hashCode();
     }
 
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         return this == o;
     }
 
@@ -53,13 +50,7 @@ public class OptionalModule extends Module {
             if (raw == Optional.class) {
                 JavaType[] types = config.getTypeFactory().findTypeParameters(type, Optional.class);
                 JavaType refType = (types == null) ? TypeFactory.unknownType() : types[0];
-                JsonDeserializer<?> valueDeser = type.getValueHandler();
-                TypeDeserializer typeDeser = type.getTypeHandler();
-                // Polymorphic types need type deserializer?
-//                if (typeDeser == null) {
-//                    typeDeser = config.findTypeDeserializer(refType);
-//                }
-                return new OptionalDeserializer(type, refType, typeDeser, valueDeser);
+                return new OptionalDeserializer(type, refType, type.getTypeHandler(), type.getValueHandler());
             }
             return super.findBeanDeserializer(type, config, beanDesc);
         }
